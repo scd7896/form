@@ -1,4 +1,2 @@
-export const onSubmit = () => (e) => {
-	e.preventDefault();
-	console.log(e);
-}
+export { default as onSubmit } from './src/onSubmit';
+export { default as onInvalid } from './src/onInvalid';

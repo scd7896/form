@@ -4,11 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "http-serve -p 30000 ."
+    "start": "http-serve -p 30000 .",
+    "dev": "webpack --env=development --watch",
+    "prod": "webpack --env=production"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "http-serve": "^1.0.1"
+  "devDependencies": {
+    "@babel/core": "^7.16.12",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.3",
+    "http-serve": "^1.0.1",
+    "typescript": "^4.5.4",
+    "webpack": "^5.67.0",
+    "webpack-cli": "^4.9.1"
   }
 }

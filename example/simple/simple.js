@@ -1,8 +1,14 @@
-import { onSubmit } from '../../index.js'
+
 const form = document.querySelector("#form");
 
 const objSubmitListener = (param) => {
 	console.log(param);
 }
 
-form.addEventListener("submit", onSubmit(objSubmitListener))
+const invalidListener = () => {
+
+}
+
+form.addEventListener("submit", Form.onSubmit(objSubmitListener), false)
+
+form.addEventListener("invalid", Form.onInvalid(invalidListener), { capture: true })
