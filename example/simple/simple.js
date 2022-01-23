@@ -5,8 +5,8 @@ const objSubmitListener = (param) => {
 	console.log(param);
 }
 
-const invalidListener = () => {
-
+const invalidListener = (failElement, reason) => {
+	console.log(failElement, reason);
 }
 
 form.addEventListener("submit", Form.onSubmit(objSubmitListener), false)
