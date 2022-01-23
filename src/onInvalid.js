@@ -1,12 +1,14 @@
 /**
  * 
  * @param {Function} onFaild (failTarget: HTMLElement, failReason: "valueMissing" | "valid" | "typeMismatch" | "tooShort" | "tooLong" | "rangeUnderflow" | "rangeOverflow" | "badInput" | "customError" | "patternMismatch") => void
- * @param {object} option 
+ * @param {{ isExcuteDefault?: boolean }} option 
  * @returns 
  */
 const onInvalid = (onFaild, option) => (e) => {
-	e.stopPropagation();
-	e.preventDefault();
+	if (!option.isExcuteDefault) {
+		e.stopPropagation();
+		e.preventDefault();
+	}
 
 	if (typeof onFaild === "function") {
 		const validates = Object.keys(e.target.validity);
