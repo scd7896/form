@@ -1,11 +1,11 @@
 
-const form = document.querySelector("#form");
+var form = document.getElementById("form");
 
-const objSubmitListener = (param) => {
-	console.log(param);
+function objSubmitListener(param) {
+	console.log(param)
 }
 
-const invalidListener = (failElement, reason) => {
+function invalidListener(failElement, reason) {
 	console.log(failElement, reason);
 }
 

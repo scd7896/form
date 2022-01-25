@@ -8,30 +8,29 @@ const onSubmit = (callback, option) => (e) => {
 	if (!option || !option.isExcuteDefault) {
 		e.preventDefault();
 	}
-	console.dir(e.target)
 
 	if (e.target.encType === "multipart/form-data") {
-		
+		const formData = new FormData(e.target);
+
+		if (typeof callback === "function") {
+			callback(formData);
+		}
 		return;
 	}
 
-	const formData = new FormData(e.target);
-
-	const entries = formData.entries();
-
 	const obj = {};
 
-	for (const item of entries) {
-			const splitKey = item[0].split('.');
-			if (splitKey.length === 1) {
-					obj[item[0]] = item[1];
-			} else {
-					assocPath(splitKey, item[1], obj);
-			}
-	}
-	
+	for (let i = 0; i < e.target.elements.length; i++) {
+		const target = e.target.elements[i];
+		const splitKey = target.name.split('.');
+
+		if (splitKey.length === 1) obj[target.name] = target.value; 
+		else if (splitKey.length > 1) assocPath(splitKey, target.value, obj);
+			
+	}	
+
 	if (typeof callback === "function") {
-			callback(obj);
+		callback(obj)
 	}
 }
 
