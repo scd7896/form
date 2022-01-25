@@ -1,7 +1,7 @@
 module.exports = function(env) {
 	return {
 		mode: env.production ? "production" : "development",
-		target: "web",
+		target: ["web", "es5"],
 		entry: "./index.js",
 		module: {
 			rules: [
@@ -12,7 +12,11 @@ module.exports = function(env) {
 						loader: 'babel-loader',
 						options: {
 							presets: [
-								['@babel/preset-env', { targets: "defaults" }]
+								['@babel/preset-env', { 
+									targets: {
+										ie: "11"
+									}
+								}]
 							]
 						}
 					}
