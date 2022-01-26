@@ -28,6 +28,8 @@ const onSubmit = (callback, option) => (e) => {
 		const target = e.target.elements[i];
 		if (target.name) {
 			const value = parsing[target.type] ? parsing[target.type](target) : target.value;
+			if (value === null) continue;
+
 			if (obj[target.name]) {
 				if (Array.isArray(obj[target.name])) {
 					obj[target.name].push(value);
@@ -35,7 +37,11 @@ const onSubmit = (callback, option) => (e) => {
 					obj[target.name] = [obj[target.name], value]; 
 				}
 			} else {
-				obj[target.name] = value;
+				if (target.type === "checkbox")	{
+					obj[target.name] = [value]
+				} else {
+					obj[target.name] = value;
+				}
 			}			
 		}
 	}	

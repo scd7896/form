@@ -3,6 +3,9 @@ import date from './date';
 import datetime from './datetime';
 import range from './range';
 import file from './file';
+import checkbox from './checkbox';
+import radio from "./radio";
+
 
 export default {
 	number,
@@ -10,5 +13,7 @@ export default {
 	datetime,
 	"datetime-local": datetime,
 	range,
-	file
+	file,
+	checkbox,
+	radio
 }
