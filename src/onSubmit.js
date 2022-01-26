@@ -28,7 +28,15 @@ const onSubmit = (callback, option) => (e) => {
 		const target = e.target.elements[i];
 		if (target.name) {
 			const value = parsing[target.type] ? parsing[target.type](target) : target.value;
-			obj[target.name] = value; 
+			if (obj[target.name]) {
+				if (Array.isArray(obj[target.name])) {
+					obj[target.name].push(value);
+				} else {
+					obj[target.name] = [obj[target.name], value]; 
+				}
+			} else {
+				obj[target.name] = value;
+			}			
 		}
 	}	
 
