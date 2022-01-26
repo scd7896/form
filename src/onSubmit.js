@@ -8,7 +8,7 @@ import parsing from './parsing'
  * 			name: string, 
  * 			message?: string, 
  * 			index?: number
- * 	}, 
+ * 	},
  * 	onInvalid?: (targetInvalid: HTMLElement, data: {
  * 		name: string, 
  * 		message?: string, 
@@ -46,24 +46,24 @@ const onSubmit = (callback, option) => (e) => {
 		}
 	}	
 
-	let result = undefined;
+	let invalidateResult = undefined;
 
-	if (option?.validate) result = option.validate(obj);
+	if (option?.validate) invalidateResult = option.validate(obj);
 
-	if (typeof result === "string") {
+	if (typeof invalidateResult === "string") {
 		if (typeof option?.onInvalid === "function") {
-			let elements = e.target.querySelectorAll(`[name=${result}]`);
+			let elements = e.target.querySelectorAll(`[name=${invalidateResult}]`);
 
-			option.onInvalid(elements[0], result);
+			option.onInvalid(elements[0], invalidateResult);
 		}
 		return;
 	} 
 
-	if (typeof result === "object") {
-		if (typeof result.name === "string" && typeof option?.onInvalid === "function") {
-			let elements = e.target.querySelectorAll(`[name=${result.name}]`);
-			const element = result.index ? elements[result.index] : elements[0];
-			option.onInvalid(element, result);
+	if (typeof invalidateResult === "object") {
+		if (typeof invalidateResult.name === "string" && typeof option?.onInvalid === "function") {
+			let elements = e.target.querySelectorAll(`[name=${invalidateResult.name}]`);
+			const element = invalidateResult.index ? elements[invalidateResult.index] : elements[0];
+			option.onInvalid(element, invalidateResult);
 		}
 		return;
 	}
@@ -87,7 +87,7 @@ const onSubmit = (callback, option) => (e) => {
 		else if (splitKey.length > 1) assocPath(splitKey, obj[key], submitObject);
 	}
 	
-	if (typeof result === "undefined" && typeof callback === "function") {
+	if (typeof callback === "function") {
 		callback(submitObject)
 	}
 }
