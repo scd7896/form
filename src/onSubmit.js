@@ -1,4 +1,4 @@
-import * as parsing from './parsing'
+import parsing from './parsing'
 /**
  * 
  * @param {function} callback (arg: object | Formdata) => void
@@ -26,8 +26,10 @@ const onSubmit = (callback, option) => (e) => {
 
 	for (let i = 0; i < e.target.elements.length; i++) {
 		const target = e.target.elements[i];
-		const value = parsing[target.type] ? parsing[target.type](target.value) : target.value;
-		obj[target.name] = value; 
+		if (target.name) {
+			const value = parsing[target.type] ? parsing[target.type](target) : target.value;
+			obj[target.name] = value; 
+		}
 	}	
 
 	let result = undefined;

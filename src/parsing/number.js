@@ -1,3 +1,3 @@
-export default function numberParsing(value) {
+export default function numberParsing({ value }) {
 	return Number(value);
 }
