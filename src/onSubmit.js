@@ -52,7 +52,7 @@ const onSubmit = (callback, option) => (e) => {
 
 	if (typeof result === "string") {
 		if (typeof option?.onInvalid === "function") {
-			let elements = e.target.getElementsByName(result);
+			let elements = e.target.querySelectorAll(`[name=${result}]`);
 
 			option.onInvalid(elements[0], result);
 		}
@@ -61,8 +61,8 @@ const onSubmit = (callback, option) => (e) => {
 
 	if (typeof result === "object") {
 		if (typeof result.name === "string" && typeof option?.onInvalid === "function") {
-			let elements = e.target.getElementsByName(result.name);
-			const element = result.index ? elements[index] : elements[0];
+			let elements = e.target.querySelectorAll(`[name=${result.name}]`);
+			const element = result.index ? elements[result.index] : elements[0];
 			option.onInvalid(element, result);
 		}
 		return;
