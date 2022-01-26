@@ -5,13 +5,13 @@
  * @returns 
  */
 const onInvalid = (onFaild, option) => (e) => {
-	if (!option.isExcuteDefault) {
+	if (!option || !option.isExcuteDefault) {
 		e.stopPropagation();
 		e.preventDefault();
 	}
 
 	if (typeof onFaild === "function") {
-		const validates = Object.keys(e.target.validity);
+		const validates = ["valueMissing", "valid", "typeMismatch", "tooShort", "tooLong", "rangeUnderflow", "rangeOverflow", "badInput", "customError", "patternMismatch"];
 		for (const validate of validates) {
 			if (e.target.validity[validate]) return onFaild(e.target, validate)
 		}
