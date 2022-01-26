@@ -13,15 +13,6 @@ const onSubmit = (callback, option) => (e) => {
 		e.preventDefault && e.preventDefault();
 	}
 
-	if (e.target.encType === "multipart/form-data") {
-		const formData = new FormData(e.target);
-
-		if (typeof callback === "function") {
-			callback(formData);
-		}
-		return;
-	}
-
 	const obj = {};
 
 	for (let i = 0; i < e.target.elements.length; i++) {
@@ -56,6 +47,7 @@ const onSubmit = (callback, option) => (e) => {
 
 			option.onInvalid(elements[0], result);
 		}
+		return;
 	} 
 
 	if (typeof result === "object") {
@@ -64,6 +56,16 @@ const onSubmit = (callback, option) => (e) => {
 
 			option.onInvalid(elements[0], result.name, result.message);
 		}
+		return;
+	}
+
+	if (e.target.encType === "multipart/form-data" || e.target.enctype === "multipart/form-data") {
+		const formData = new FormData(e.target);
+
+		if (typeof callback === "function") {
+			callback(formData);
+		}
+		return;
 	}
 
 	const keys = Object.keys(obj);
