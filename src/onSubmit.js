@@ -1,11 +1,20 @@
 import parsing from './parsing'
+
 /**
- * 
  * @param {function} callback (arg: object | Formdata) => void
  * @param {{ 
- * isExcuteDefault?: boolean, 
- * validate?: (obj: any) => string | undefined | {name: string, message?: string}, 
- * onInvalid?: (targetInvalid: HTMLElement, name: string, message?: string) => void }} option  
+ * 	isExcuteDefault?: boolean, 
+ * 	validate?: (obj: any) => string | undefined | {
+ * 			name: string, 
+ * 			message?: string, 
+ * 			index?: number
+ * 	}, 
+ * 	onInvalid?: (targetInvalid: HTMLElement, data: {
+ * 		name: string, 
+ * 		message?: string, 
+ * 		index?: number
+ * 	}) => void
+ * }} option  
  * @returns 
  */
 const onSubmit = (callback, option) => (e) => {
@@ -53,8 +62,8 @@ const onSubmit = (callback, option) => (e) => {
 	if (typeof result === "object") {
 		if (typeof result.name === "string" && typeof option?.onInvalid === "function") {
 			let elements = e.target.getElementsByName(result.name);
-
-			option.onInvalid(elements[0], result.name, result.message);
+			const element = result.index ? elements[index] : elements[0];
+			option.onInvalid(element, result);
 		}
 		return;
 	}
