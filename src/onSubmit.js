@@ -2,7 +2,10 @@ import * as parsing from './parsing'
 /**
  * 
  * @param {function} callback (arg: object | Formdata) => void
- * @param {{ isExcuteDefault?: boolean, validate?: (obj: any) => void, onInvalid?: (targetInvalid: HTMLElement, name: string) => void }} option  
+ * @param {{ 
+ * isExcuteDefault?: boolean, 
+ * validate?: (obj: any) => string | undefined | {name: string, message?: string}, 
+ * onInvalid?: (targetInvalid: HTMLElement, name: string, message?: string) => void }} option  
  * @returns 
  */
 const onSubmit = (callback, option) => (e) => {
@@ -23,26 +26,42 @@ const onSubmit = (callback, option) => (e) => {
 
 	for (let i = 0; i < e.target.elements.length; i++) {
 		const target = e.target.elements[i];
-		const splitKey = target.name.split('.');
 		const value = parsing[target.type] ? parsing[target.type](target.value) : target.value;
-		if (splitKey.length === 1) obj[target.name] = value; 
-		else if (splitKey.length > 1) assocPath(splitKey, value, obj);
+		obj[target.name] = value; 
 	}	
 
 	let result = undefined;
 
 	if (option?.validate) result = option.validate(obj);
 
-	if (result) {
+	if (typeof result === "string") {
 		if (typeof option?.onInvalid === "function") {
 			let elements = e.target.getElementsByName(result);
 
 			option.onInvalid(elements[0], result);
 		}
-	} else {
-		if (typeof callback === "function") {
-			callback(obj)
+	} 
+
+	if (typeof result === "object") {
+		if (typeof result.name === "string" && typeof option?.onInvalid === "function") {
+			let elements = e.target.getElementsByName(result.name);
+
+			option.onInvalid(elements[0], result.name, result.message);
 		}
+	}
+
+	const keys = Object.keys(obj);
+	const submitObject = {};
+	
+	for (let i = 0; i < keys.length; i++) {
+		const key = keys[i];
+		const splitKey = key.split('.');
+		if (splitKey.length === 1) submitObject[key] = obj[key];
+		else if (splitKey.length > 1) assocPath(splitKey, obj[key], submitObject);
+	}
+	
+	if (typeof result === "undefined" && typeof callback === "function") {
+		callback(submitObject)
 	}
 }
 
