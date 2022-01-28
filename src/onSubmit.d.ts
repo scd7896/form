@@ -10,4 +10,4 @@ export interface IOptions<T> {
 	onInvalid?: (targetInvalidElement: HTMLElement, invalidData: IFailValidateReturnType | string) => void;
 }
 
-export default function onSubmit<T>(callback: (arg: T | FormData) => void): void;
+export default function onSubmit<T>(callback: (arg: T | FormData) => void, options: IOptions<T>): void;
