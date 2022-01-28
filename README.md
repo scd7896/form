@@ -1,13 +1,13 @@
 ### Install
 
-    npm install form-event-helper
+    npm install web-form-helper
 
 ### Examples
 #### React
 ```jsx
 
 import React from 'react';
-import { onSubmit } from 'form-event-helper';
+import { onSubmit } from 'web-form-helper';
 
 function App() {
   const onSubmit = (data) => console.log(data);
@@ -40,7 +40,7 @@ function App() {
 ```
 ```js 
 --- index.js ---
-import { onSubmit, onInvalid } from 'form-event-helper';
+import { onSubmit, onInvalid } from 'web-form-helper';
 
 var form = document.getElementById("form");
 
@@ -60,7 +60,7 @@ form.addEventListener("invalid", onInvalid(invalidListener), { capture: true })
 
 ## Validate Examples
 ```js
-import { onSubmit, onInvalid } from 'form-event-helper';
+import { onSubmit, onInvalid } from 'web-form-helper';
 
 var form = document.getElementById("form");
 

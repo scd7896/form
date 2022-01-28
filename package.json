@@ -1,15 +1,31 @@
 {
-  "name": "form",
+  "name": "web-form-helper",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./index.js",
   "scripts": {
     "start": "http-serve -p 30000 .",
     "dev": "webpack --env=development --watch",
     "prod": "webpack --env=production"
   },
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "Kim SerVer",
+    "email": "scd7896@gmail.com"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
+  "keywords": [
+    "form",
+    "form-event",
+    "web-form",
+    "react-form",
+    "vue-form",
+    "svelt-form"
+  ],
   "devDependencies": {
     "@babel/core": "^7.16.12",
     "@babel/preset-env": "^7.16.11",
