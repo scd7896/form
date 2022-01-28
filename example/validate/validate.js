@@ -30,4 +30,4 @@ function submitInvalid(element, invalidData) {
 
 form.addEventListener("submit", Form.onSubmit(objSubmitListener, { validate: submitValidate, onInvalid: submitInvalid }), false)
 
-form.addEventListener("invalid", Form.onInvalid(invalidListener), { capture: true })
+form.addEventListener("invalid", Form.onInvalid(invalidListener))
