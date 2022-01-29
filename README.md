@@ -23,7 +23,7 @@
 |input-type|Object-value-type|
 |--|--|
 |`date`| `Date`
-|`datetime | datetime-local`|`Date`
+|`datetime` or `datetime-local`|`Date`
 |`number`|`number`
 |`checkbox`|`Array<string>`
 |`file`|`File`
