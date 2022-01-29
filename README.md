@@ -4,20 +4,21 @@
 # API
 ## onSubmit
 |argument|type
-|--|--|--
-|callback|(obj: `Object | FormData`) => `FormEventFunction`
-|options|`ISubmitOptions | undefined`
+|--|--
+|callback|(obj: `Object`or `FormData`) => `FormEventFunction`
+|options|`ISubmitOptions`or `undefined`
+
 #### type
 |name|values|types|descriptions
 |--|--|--|--
 |ISubmitOptions| `{}`
-||isExcuteDefault|`boolean | undefined`| 이벤트에 기본적으로 걸려있는 액션을 실행하는 것의 여부를 나타냅니다. 기본은 false 입니다.
-||validate|`(validateParameter: T) => string | IFailValidateReturnType | undefined`| 직접 검증하는 로직을 작성합니다. 검증 오류가 나는 부분의 name을 return하거나, `IFailValidateReturnType`에 맞게 return 합니다. 없을 경우 return 하지 않습니다.
-||onInvalid|`(targetInvalidElement?: HTMLElement, invalidData?: IFailValidateReturnType | string) => void`|validate에서 return 받은 것이 있을 경우 실행하게 됩니다.
+||isExcuteDefault|`boolean` or `undefined`| 이벤트에 기본적으로 걸려있는 액션을 실행하는 것의 여부를 나타냅니다. 기본은 false 입니다.
+||validate|`(validateParameter: T) => string or IFailValidateReturnType or undefined`| 직접 검증하는 로직을 작성합니다. 검증 오류가 나는 부분의 name을 return하거나, `IFailValidateReturnType`에 맞게 return 합니다. 없을 경우 return 하지 않습니다.
+||onInvalid|`(targetInvalidElement?: HTMLElement, invalidData?: IFailValidateReturnType or string) => void`|validate에서 return 받은 것이 있을 경우 실행하게 됩니다.
 |IFailValidateReturnType|`{}`|`Object`|validate에서 return 하는 타입으로 다음과 같은 형식으로 return 을 하게 됩니다.
 ||name|`string`|validate 오류가 발생한 input의 name으로 필수 입니다.
-||message|`string | undefined`|validate 오류가 발생 할 때, 추가적으로 메세지를 작성해서 return 합니다. 기본은 `undefined`입니다.
-||index|`number | undefined`|validate 오류가 발생 한, input 중에서 동일한 name이 있을 경우에 몇 번째에서 발생한지 알려줄주는 필드 입니다. 기본은 0입니다.
+||message|`string` or `undefined`|validate 오류가 발생 할 때, 추가적으로 메세지를 작성해서 return 합니다. 기본은 `undefined`입니다.
+||index|`number` or `undefined`|validate 오류가 발생 한, input 중에서 동일한 name이 있을 경우에 몇 번째에서 발생한지 알려줄주는 필드 입니다. 기본은 0입니다.
 #### Input description
 |input-type|Object-value-type|
 |--|--|
@@ -32,13 +33,13 @@
 ## onInvalid
 |argument|type
 |--|--
-|callback|`(failTarget?: HTMLElement, reason: failReason?: "valueMissing" | "valid" | "typeMismatch" | "tooShort" | "tooLong" | "rangeUnderflow" | "rangeOverflow" | "badInput" | "customError" | "patternMismatch") => void`
-|options|`IInvalidOption | undefined`
+|callback|`(failTarget?: HTMLElement, reason: failReason?: "valueMissing" or "valid" or "typeMismatch" or "tooShort" or "tooLong" or "rangeUnderflow" or "rangeOverflow" or "badInput" or "customError" or "patternMismatch") => void`
+|options|`IInvalidOption or undefined`
 #### type
 |name|values|types|descriptions
 |--|--|--|--
 |IInvalidOption|`{}`
-||isExcuteDefault|`boolean | undefined`|이벤트에 기본적으로 걸려있는 액션을 실행하는 것의 여부를 나타냅니다. 기본은 false 입니다.
+||isExcuteDefault|`boolean` or `undefined`|이벤트에 기본적으로 걸려있는 액션을 실행하는 것의 여부를 나타냅니다. 기본은 false 입니다.
 
 ### Examples
 #### React
