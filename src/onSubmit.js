@@ -28,7 +28,7 @@ const onSubmit = (callback, option) => (e) => {
 		const target = e.target.elements[i];
 		if (target.name) {
 			const value = parsing[target.type] ? parsing[target.type](target) : target.value;
-			if (value === null) continue;
+			if (value === null | value === "") continue;
 
 			if (obj[target.name]) {
 				if (Array.isArray(obj[target.name])) {
