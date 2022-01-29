@@ -4,7 +4,7 @@
 # API
 ## onSubmit
 |argument|type
-|--|--
+|--|--|--
 |callback|(obj: `Object | FormData`) => `FormEventFunction`
 |options|`ISubmitOptions | undefined`
 #### type
@@ -18,6 +18,17 @@
 ||name|`string`|validate 오류가 발생한 input의 name으로 필수 입니다.
 ||message|`string | undefined`|validate 오류가 발생 할 때, 추가적으로 메세지를 작성해서 return 합니다. 기본은 `undefined`입니다.
 ||index|`number | undefined`|validate 오류가 발생 한, input 중에서 동일한 name이 있을 경우에 몇 번째에서 발생한지 알려줄주는 필드 입니다. 기본은 0입니다.
+#### Input description
+|input-type|Object-value-type|
+|--|--|
+|`date`| `Date`
+|`datetime | datetime-local`|`Date`
+|`number`|`number`
+|`checkbox`|`Array<string>`
+|`file`|`File`
+|`range`|`number`
+|`radio`|`string`
+|`etc...`|`string`
 ## onInvalid
 |argument|type
 |--|--
