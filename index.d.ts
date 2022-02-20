@@ -7,7 +7,7 @@ export interface IFailValidateReturnType {
 export interface ISubmitOptions<T> {
 	isExcuteDefault?: boolean;
 	validate?: (validateParameter: T) => string | undefined | IFailValidateReturnType;
-	onInvalid?: (targetInvalidElement?: HTMLElement, invalidData?: IFailValidateReturnType | string) => void;
+	onInvalid?: (targetInvalidElement?: HTMLElement, invalidData?: IFailValidateReturnType & string) => void;
 }
 
 export function onSubmit<T>(callback: (arg: T | FormData) => void, options?: ISubmitOptions<T>): any;
